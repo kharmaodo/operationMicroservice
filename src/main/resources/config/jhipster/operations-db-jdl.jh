@@ -1,0 +1,92 @@
+/***
+ FREE SN B2B Selfcare : OPERATIONS Data Model
+*/
+
+/**
+ * PeriodeEnvoi entity.
+ * @author Ahmadou Diaw
+ */
+entity PeriodeEnvoi {
+	expression String required,
+    groupeId Long required,
+    status ObjectStatus required
+}
+
+/**
+ * Adjustment entity.
+ * @author Ahmadou Diaw
+ */
+entity Adjustment {
+    clientId Long,
+    groupeId Long,
+    targetNumber String required,
+	credit Double,
+    sms Double,
+    minAppel Double,
+    goData Double,
+    typeAdjustment AdjustmentType required,
+    groupeId Long,
+    dateAdjustment Instant required,
+    trials Integer required,
+    status ActionStatus required
+}
+
+
+/**
+ * Facture entity.
+ * @author Ahmadou Diaw
+ */
+entity Facture {
+	codeFacture String,
+    clientId Long required,
+    amount Double required,
+    dateEmission Instant required,
+    datePaiement Instant,
+    paiementStatus ActionStatus required
+}
+
+
+/**
+ * Paiement entity.
+ * @author Ahmadou Diaw
+ */
+entity Paiement {
+    clientId Long required,
+    amount Double required,
+    datePaiement Instant,
+    trials Integer,
+    paiementStatus ActionStatus required
+}
+
+enum ObjectStatus {
+    ACTIVE, INACTIVE, ARCHIVED
+}
+
+enum ActionStatus {
+    PENDING, INPROGRESS, FAILED, SUCCESS
+}
+
+enum AdjustmentType {
+    PERIODIC, MANUAL
+}
+
+relationship OneToMany {
+	Facture{paiements} to Paiement{facture}
+}
+
+relationship OneToOne {
+	Adjustment{paiement} to Paiement{adjustment}
+}
+
+//* Set pagination options
+/*paginate JobHistory, Employee with infinite-scroll
+paginate Job with pagination */
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

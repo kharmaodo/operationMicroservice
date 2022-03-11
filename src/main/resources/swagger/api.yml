@@ -1,0 +1,61 @@
+# API-first development with OpenAPI
+# This file will be used at compile time to generate Spring-MVC endpoint stubs using openapi-generator
+openapi: '3.0.1'
+info:
+  title: 'operationMicroservice'
+  version: 0.0.1
+tags:
+- name: "consult"
+  description: "Consult state"
+- name: "adjust"
+  description: "Adjust resources"
+servers:
+  - url: http://localhost:8088/api
+    description: Development server
+  - url: https://localhost:8088/api
+    description: Development server with TLS Profile
+paths: {}
+#  /consult:
+#    get:
+#      tags:
+#      - "consult"
+#      summary: "Voir le solde du client dont le numéro est passé en paramètre"
+#      operationId: "viewSoldeByNumber"
+#      parameters:
+#      - name: "number"
+#        in: "query"
+#        description: "Status values that need to be considered for filter"
+#        required: true
+#      responses:
+#        200:
+#          description: "successful operation"
+#        400:
+#          description: "Invalid number supplied"
+#        404:
+#          description: "No info found"
+#
+#  /adjust:
+#    post:
+#      tags:
+#      - "adjust"
+#      summary: "Crédite ou débite des ressources d'un numéro"
+#      description: ""
+#      operationId: "adjustByNumber"
+#      parameters:
+#      - name: "order"
+#        in: "query"
+#        description: "AdjustOrder contenant les détails de la transaction à effectuer"
+#        required: true
+#      responses:
+#        400:
+#          description: "Operation impossible"
+#        405:
+#          description: "Invalid input"
+components:
+  responses:
+    Problem:
+      description: error occurred - see status code and problem object for more information.
+      content:
+        'application/problem+json':
+          schema:
+            $ref: 'https://opensource.zalando.com/problem/schema.yaml#/Problem'

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Ligne.
+    -->
+    <changeSet id="20200727152020-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="alert_id"
+                                 baseTableName="seuil_employe"
+                                 constraintName="fk_seuil_employe_alert_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="alert"/>
+
+    </changeSet>
+</databaseChangeLog>
